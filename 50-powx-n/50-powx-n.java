@@ -26,5 +26,5 @@ class Solution {
             
         return (double) ans;   //convert the ans variable from long to double.
                                //long is used, because, int ranges from -2,147,483,648 (-2^31) to 2,147,483,647 (2^(31)-1). There is one extra integer
-    }                          //on the positive side of the range.
+    }                          //on the negative side of the range.
 }
