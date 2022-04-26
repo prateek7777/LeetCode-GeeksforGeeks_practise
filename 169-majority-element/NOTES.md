@@ -1,1 +1,1 @@
-​
+We have to find the majority element, which is defined by its frequency being more than n/2 times. n = number of elements.
