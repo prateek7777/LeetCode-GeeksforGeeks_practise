@@ -22,7 +22,7 @@ class Solution {
             while(j<=high && nums[i]>(2 * (long) nums[j])){        //The condition that has to be satisfied.
                 j++;
             }
-            count = count + (j-(mid+1));                           //Since j is getting incremented on the basis of the given condition, j-(mid+1) will be having the required count.
+            count = count + (j-(mid+1));                           //Since j is getting incremented on the basis of the given condition, j-(mid+1) will be                                                                      //-having the required count.
         }
         
         //Merge Sort.
@@ -49,8 +49,7 @@ class Solution {
             nums[i] = sorted.get(i-low);                 //return type is array. So, copy all the elements of the list to the array.
         }
         
-    return count;                                        //return the final count.
+    return count;                                        //return the count.
     }
-    
-    
+       
 }
