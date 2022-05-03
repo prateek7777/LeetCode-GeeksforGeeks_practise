@@ -5,10 +5,12 @@ class Solution {
         String prefix = "";
         prefix = strs[0];
         
-        for(i = 1; i<n; i++){
+        for(i = 1; i<n; ){
         
-            while(strs[i].indexOf(prefix) != 0)
+            if(strs[i].indexOf(prefix) != 0)
                 prefix = prefix.substring(0, prefix.length()-1);
+            else
+                i++;
             
         }
         
