@@ -11,16 +11,16 @@
 class Solution {
     public ListNode reverseList(ListNode head) {
      
-        ListNode prev = null;
+        ListNode prev = null;                                    //set the new head(prev) to null.
         
-        while(head != null){
-            ListNode nextNode = head.next;
-            head.next = prev;
-            prev = head;
-            head = nextNode;            
+        while(head != null){                                     //to iterate through the linked list.
+            ListNode nextNode = head.next;                       //actual iteration(going ahead).
+            head.next = prev;                                    //check CN practise book.
+            prev = head;                                         //check CN practise book.
+            head = nextNode;                                     //check CN practise book.
         }
         
-        return prev;
+        return prev;                                             //always return the reference to the new head. not the entire linked list.
         
     }
 }
