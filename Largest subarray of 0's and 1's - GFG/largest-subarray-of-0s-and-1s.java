@@ -51,10 +51,10 @@ class Solution {
         {
          
          if(arr[i]==0)
-         prefixSum = prefixSum + (-1);
+         prefixSum = prefixSum + (-1);       //instead of replacing the O's of the array with -1's, we will just add -1 to the prefixSum.  
          
          else
-         prefixSum = prefixSum + 1;
+         prefixSum = prefixSum + 1;          //since this is a binary array, the only other number would be 1.
         
         //  prefixSum = prefixSum + arr[i]; //update prefixSum with every iteration through arr[i].
          
