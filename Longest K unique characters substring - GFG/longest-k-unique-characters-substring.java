@@ -57,10 +57,10 @@ class Solution {
 		        
 		    }
         
-        if(distinct == k)		    
-		answer = Math.max(answer, acquire-release+1);  //the count of the valid substring(s) is (acquire-release+1).
-		                                         //we keep updating the answer.
+        if(distinct == k) //as per the question, since exactly k unique characters should be there in the substring. //not required in Day-6(2).
+		answer = Math.max(answer, acquire-release+1);  //the count of the valid substring(s) is (acquire-release+1). we need to return the length of the longest 
+//substring, hence we use Math.max(answer, (acquire-release+1)), not just update the answer(answer = answer + (acquire-release+1)).
 		}
-		return answer == 0 ? -1 : answer;                          //we return the final answer.
-    }
+		return answer == 0 ? -1 : answer; //not required in Day-6(2).  //we return the final answer.
+    }  //if no valid output found, return -1.
 }
