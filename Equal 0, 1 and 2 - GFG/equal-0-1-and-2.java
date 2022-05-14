@@ -21,7 +21,6 @@ class Solution
 { 
     long getSubstringWithEqual012(String str) 
     { 
-        // code here
         
         int z0 = 0;
         int z1 = 0;
@@ -29,28 +28,28 @@ class Solution
         long answer = 0;
         int n = str.length();
         HashMap<String, Integer> memo = new HashMap<String, Integer>();
+        //the expression has been made considering the proportionality factor.
+        String expr_consider = (z2-z1) + "-" + (z1-z0); //the brackets are important. //expression can be anything(z0-z1, z1-z2; etc).
         
-        String expr_consider = (z2-z1) + "-" + (z1-z0);
-        
-        memo.put(expr_consider, 1);
+        memo.put(expr_consider, 1);                       //to handle edge cases in most HashMap problems.
         
         for(int i=0; i<n; i++){
             
-            if(str.charAt(i)=='0')
-            z0 = z0+1;
+            if(str.charAt(i)=='0')                       //as per the requirement of the question.
+            z0 = z0+1;                             
             else if(str.charAt(i)=='1')
             z1 = z1+1;
             else
             z2 = z2+1;
             
-            expr_consider = (z2-z1) + "-" + (z1-z0);
+            expr_consider = (z2-z1) + "-" + (z1-z0);    //the expression has to be initialized once as this is inside of a for loop.
             if(memo.containsKey(expr_consider))
             {
-            answer = answer + memo.get(expr_consider);
-            memo.put(expr_consider, memo.get(expr_consider)+1);
+            answer = answer + memo.get(expr_consider); //firstly, update the answer variable.(because the answer has to be updated considering line 34). //not answer = answer+1.
+            memo.put(expr_consider, memo.get(expr_consider)+1); //secondly, then update the HashMap.  //increase the frequency in the HashMap.
             }
             else
-            memo.put(expr_consider, 1);
+            memo.put(expr_consider, 1);                                 //the expression has been encountered for the first time.
             
         }
             return answer;
