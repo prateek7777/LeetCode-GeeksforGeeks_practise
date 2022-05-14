@@ -1,6 +1,6 @@
 class Solution {
     public int subarraysWithKDistinct(int[] nums, int k) {
-        return subarrayWithAtmostK(nums, k-1) - subarrayWithAtmostK(nums, k);
+        return subarrayWithAtmostK(nums, k) - subarrayWithAtmostK(nums, k-1);
     }
         public int subarrayWithAtmostK(int[] nums, int k){
         int release = 0;
@@ -42,7 +42,7 @@ class Solution {
 		answer = answer + acquire-release+1; //the count of the valid substring(s) is (acquire-release+1). we keep updating the answer.
 		
 		}
-				return (n*(n+1)/2) - answer;
+				return answer;
         
     }
 }
