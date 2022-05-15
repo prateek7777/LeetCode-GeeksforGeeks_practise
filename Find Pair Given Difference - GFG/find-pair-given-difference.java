@@ -42,15 +42,16 @@ class Solution
     {
         HashMap<Integer, Integer> memo = new HashMap<Integer, Integer>();
         for(int i = 0; i<arr.length; i++){
-
-            if(memo.containsKey(n + arr[i]) || memo.containsKey(arr[i]-n)){ 
+        //difference between a and b = (a - b) & (b - a).
+        //subtraction between a and b = (a - b). 
+            if(memo.containsKey(n + arr[i]) || memo.containsKey(arr[i]-n)){ //n=a-b => a = n+b, b = a-n.
             return true;
             }
-            else
-            memo.put(arr[i], 1);
+            // else
+            memo.put(arr[i], i);               //because we are considering the frequency.
 
         }
         
-        return false; 
+        return false;                          //the entire array doesn't have the required element pairs. 
     }
 }
