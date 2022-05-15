@@ -47,8 +47,8 @@ class Solution
             if(memo.containsKey(n + arr[i]) || memo.containsKey(arr[i]-n)){ //n=a-b => a = n+b, b = a-n.
             return true;
             }
-            // else
-            memo.put(arr[i], i);               //because we are considering the frequency.
+            else
+            memo.put(arr[i], i);               
 
         }
         
