@@ -44,11 +44,11 @@ class Solution
         for(int i = 0; i<arr.length; i++){
         //difference between a and b = (a - b) & (b - a).
         //subtraction between a and b = (a - b). 
-            if(memo.containsKey(n + arr[i]) || memo.containsKey(arr[i]-n)){ //n=a-b => a = n+b, b = a-n.
+            if(memo.containsKey(n + arr[i]) || memo.containsKey(arr[i]-n)){    //n=a-b => a = n+b, b = a-n.
             return true;
             }
             else
-            memo.put(arr[i], i);               
+            memo.put(arr[i], i);        //?? memo.put(arr[i], 1);
 
         }
         
