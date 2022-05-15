@@ -23,16 +23,15 @@ class Solution{
         
         memo.put(currRem, -1);                                //to handle edge cases.
         for(int i=0; i<n; i++){
-        prefixSum = prefixSum + a[i];                      //prefixSum is the sum of the elements before and including the currVal.
+        prefixSum = prefixSum + a[i];                      //prefixSum is the sum of the elements before and including the previous a[i].
         currRem = ((prefixSum%k)+k)%k;                        //currRem = prefixSum%k; but to handle the negative remainders, as negative remainders cannot exist, they are converted to positive.
             
         if(memo.containsKey(currRem)){                        //if the currRem is repeating.
-            answer = Math.max(answer, i - memo.get(currRem));     //answer has to be updated with the frequency of the HashMap.
-            // memo.put(currRem, i - memo.get(currRem));         //increment the frequency of the HashMap for its use in further iterations.
+            answer = Math.max(answer, i - memo.get(currRem));     //answer has to be updated with the length of the longest valid subarray.
+            // memo.put(currRem, i - memo.get(currRem)+1);         //increment the frequency of the HashMap for its use in further iterations.
         }
-        
-            if(!memo.containsKey(currRem))
-            memo.put(currRem, i);                              //if the currRem has been encountered for the first time.
+        else
+            memo.put(currRem, i);                              //if the currRem has been encountered for the first time, we put the index.
             
         }
         return answer;                                         //we return the final answer.
