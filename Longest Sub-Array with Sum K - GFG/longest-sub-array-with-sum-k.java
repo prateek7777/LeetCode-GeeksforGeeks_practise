@@ -55,7 +55,7 @@ class Solution{
     int answer = 0;
     HashMap<Integer, Integer> memo = new HashMap<Integer, Integer>();
     int prefixSum = 0;
-    
+    //since the longest has been asked instead of count, we replace the frequency in the code with index at all places.(see LC560).
     memo.put(prefixSum, -1);                   //to handle edge cases.
     for(int i = 0; i<N; i++){
         
@@ -65,10 +65,9 @@ class Solution{
         answer = Math.max(answer, i-memo.get(prefixSum-K)); //we update the answer ONLY as the above condition verifies that it satisfies the required condition.
     }                                              
         
-    if(!(memo.containsKey(prefixSum)))                  //if the prefixSum is repeating.
-        memo.put(prefixSum, i);
-    // else
-    //     memo.put(prefixSum, i);                      //if the prefixSum is encountered for the first time.
+    if(!(memo.containsKey(prefixSum)))                  //if the prefixSum is encountered for the first time.
+        memo.put(prefixSum, i);                         //we are updating the index, not the frequency.
+
     }
     return answer;                             //we return the final answer.
         
