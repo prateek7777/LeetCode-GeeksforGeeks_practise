@@ -14,7 +14,7 @@ public class Solution {
         
         ListNode a_pointer = headA;
         ListNode b_pointer = headB;
-        
+        //dry run.
         while(a_pointer != b_pointer){
             
         if(a_pointer != null){
