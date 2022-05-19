@@ -19,23 +19,23 @@ class Node {
 
 class Solution {
     public List<Integer> preorder(Node root) {
-        List<Integer> traverse = new ArrayList<>();
-        preorderTraversal(root, traverse);
-        return traverse;
+        List<Integer> traverse = new ArrayList<>();               //the list which contains the traversed tree.
+        preorderTraversal(root, traverse);                        //the recursive function call.
+        return traverse;                                          //returning the final answer.
     }
     
     public void preorderTraversal(Node root, List<Integer> traverse){
         
-        if(root == null)
+        if(root == null)                                          //the base case.
             return;
+//preoder traversal in Binary Tree => value, left child, right child; preorder traversal in N-ary Tree => value, left to right traversal direction of nodes.
+        traverse.add(root.val);                                   //adding the value to the list.
         
-        traverse.add(root.val);
+        List<Node> childrens = root.children;                     //the given list.
+        for(Node currChild : childrens)           //traversing through the list. the traversal list direction is from left to right.
+            preorderTraversal(currChild, traverse);            //updating the list traverse with each recursive call.
         
-        List<Node> childrens = root.children;
-        for(Node currChild : childrens)
-            preorderTraversal(currChild, traverse);
-        
-        return;
+        return; 
         
     }
 }
