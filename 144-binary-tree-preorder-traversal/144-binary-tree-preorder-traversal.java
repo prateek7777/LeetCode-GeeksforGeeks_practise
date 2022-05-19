@@ -15,20 +15,20 @@
  */
 class Solution {
     public List<Integer> preorderTraversal(TreeNode root) {
-        List<Integer> pre_traversal = new ArrayList<>();
-        preTraversal(root, pre_traversal);
-        return pre_traversal;
+        List<Integer> pre_traversal = new ArrayList<>();                 //this list contains the preorder traversal list.
+        preTraversal(root, pre_traversal);                               //recursive function call.
+        return pre_traversal;                                            //return the final traversed list.
     }
     
     public void preTraversal(TreeNode root, List<Integer> pre_traversal){
         
-        if(root == null)
+        if(root == null)                                                    //the base case.
             return;
+        //preorder traversal => value at node, left node, right node.
+        pre_traversal.add(root.val);             //recursion not needed here. //the value at the current node/root is added to the list.
+        preTraversal(root.left, pre_traversal);        //recursively keep adding the left node(root), to the list.
+        preTraversal(root.right, pre_traversal);       //recursively keep adding the right node(root), to the list.
         
-        pre_traversal.add(root.val);
-        preTraversal(root.left, pre_traversal);
-        preTraversal(root.right, pre_traversal);
-        
-        return;
+        return;                                   //the return type is void.
     }
 }
