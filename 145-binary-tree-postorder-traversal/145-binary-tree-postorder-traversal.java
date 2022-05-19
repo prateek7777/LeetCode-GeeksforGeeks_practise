@@ -19,7 +19,7 @@ class Solution {
         postorderTraverse(root, traverse);
         return traverse;
     }
-    
+    //this is the exact opposite of the preorder traversal of the Binary Tree.
     public void postorderTraverse(TreeNode root, List<Integer> traverse){
         
         if(root == null)
