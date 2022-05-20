@@ -20,17 +20,17 @@ class Solution {
     
     public boolean isUnivalued(TreeNode root, int considerVal){
      
-        if(root == null)
-            return true;
+        if(root == null)   //we return true, because null at root, implies that we have reached the null of every node in the tree without contradicting the requirement.
+            return true;  
         
-        if(root.val != considerVal)
-            return false;
+        if(root.val != considerVal)                //root.val keeps on changing with each node, while considerVal only contains the value at the original root of the given tree.
+            return false;                          //inequality implies that the given binary tree is not univalued.
+         
+        boolean leftConsider = isUnivalued(root.left, considerVal);    //consider left child.     
+        boolean rightConsider = isUnivalued(root.right, considerVal);  //consider right child.
         
-        boolean leftConsider = isUnivalued(root.left, considerVal);
-        boolean rightConsider = isUnivalued(root.right, considerVal);
-        
-        if(leftConsider && rightConsider == true)
-            return true;
+        if(leftConsider && rightConsider == true)                    //comparing the left child and right child.
+            return true;                                             
         else
             return false;
     }
