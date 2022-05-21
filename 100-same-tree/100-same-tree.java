@@ -16,7 +16,7 @@
 class Solution {
     public boolean isSameTree(TreeNode p, TreeNode q) {
         
-        if(p == null && q == null)       //we reached the end without encountering any differences.
+        if(p == null && q == null)       //we reached the end of the two trees without encountering any differences.
         return true;                     //thus, we return true.
         
         if(p == null || q == null)        //even if one of the nodes is null, it indicates that the two are not equal. 
