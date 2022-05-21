@@ -14,27 +14,27 @@
  * }
  */
 class Solution {
-    int sum = 0;
+    int sum = 0;                                          //global declaration.
     public int sumOfLeftLeaves(TreeNode root) {
-        sumLeftLeaves(root, false);
+        sumLeftLeaves(root, false); //recursive function call. we start with false, because, the required output for tree with only one node(the 1 root) is sum = 0.
         return sum;
     }
     
     public void sumLeftLeaves(TreeNode root, Boolean isLeftLeaf){
         
-        if(root == null)
+        if(root == null)                                               //base case.
             return;
         
-        if(root.left == null && root.right == null){
+        if(root.left == null && root.right == null){               //if reached the leaf node.
             
-            if(isLeftLeaf == true)
-                sum = sum + root.val;
+            if(isLeftLeaf == true)                       //if the leaf is on left side.
+                sum = sum + root.val;                    //keep updating the sum with the value present at the root(left leaf node).
             
         }
         
-        sumLeftLeaves(root.left, true);
-        sumLeftLeaves(root.right, false);
+        sumLeftLeaves(root.left, true);                     //for left child, pass true to isLeftLeaf.
+        sumLeftLeaves(root.right, false);                   //for right child, pass false to isLeftLeaf.
       
-        return;
+        return;                                           //return type is void.
     } 
 }
