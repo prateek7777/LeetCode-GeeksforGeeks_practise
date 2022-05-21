@@ -14,26 +14,27 @@
  * }
  */
 class Solution {
+    int sum = 0;
     public int sumOfLeftLeaves(TreeNode root) {
-        return sumLeftLeaves(root, false);
+        sumLeftLeaves(root, false);
+        return sum;
     }
     
-    public int sumLeftLeaves(TreeNode root, Boolean isLeftLeaf){
+    public void sumLeftLeaves(TreeNode root, Boolean isLeftLeaf){
         
         if(root == null)
-            return 0;
+            return;
         
-        if(root.left == null && root.right == null)
-        {
+        if(root.left == null && root.right == null){
+            
             if(isLeftLeaf == true)
-                return root.val;
-            else
-                return 0;
+                sum = sum + root.val;
+            
         }
         
-        int leftLeavesSum = sumLeftLeaves(root.left, true);
-        int rightLeavesSum = sumLeftLeaves(root.right, false);
-        
-        return leftLeavesSum + rightLeavesSum;        
+        sumLeftLeaves(root.left, true);
+        sumLeftLeaves(root.right, false);
+      
+        return;
     } 
 }
