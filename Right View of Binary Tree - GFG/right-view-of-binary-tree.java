@@ -132,22 +132,22 @@ class Solution{
     ArrayList<Integer> rightView(Node node) {
         //add code here.
         ArrayList<Integer> answer = new ArrayList<>();
-        rightSideView(node, 0, answer);
+        rightSideView(node, 0, answer);                   //we start at level 0 of the Binary Tree.
         return answer;
     }
     
     public void rightSideView(Node node, int currLevel, ArrayList<Integer> answer){
         
-        if(node == null)
+        if(node == null)                                //base case.
         return;
-        
-        if(answer.size() == currLevel){
-            answer.add(node.data);
+        //we can use answer.size() method instead of a HashMap.
+        if(answer.size() == currLevel){  //if the size and the currLevel are same, it indicates that the there is no data at that point.
+            answer.add(node.data);        //thus, we add the data at that point. we cannot add data at that point if that point is already populated.
         }
         
-        rightSideView(node.right, currLevel+1, answer);
-        rightSideView(node.left, currLevel+1, answer);
-        
+        rightSideView(node.right, currLevel+1, answer);   //we start going recursively in the right side first as we need to find the right view of Binary Tree.
+        rightSideView(node.left, currLevel+1, answer);    //in left view of Binary Tree, this line would be at 148. while the above line would be here.
+        //SC of HashMap method = O(N); SC of this method = O(1).
         return;
     }
 }
