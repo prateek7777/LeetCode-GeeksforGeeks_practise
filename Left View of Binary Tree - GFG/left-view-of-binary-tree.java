@@ -135,8 +135,8 @@ class Tree
         if(root == null)                         //base case.
         return;
         
-        if(!memo.containsKey(currLevel)){       //if a level has been encountered earlier, it indicates that it is in front view of the person.
-            memo.put(currLevel, root.data);     //if it is in front view, there is no need to add it to the HashMap as it has been encountered earlier also.
+        if(!memo.containsKey(currLevel)){       //if a level has been encountered earlier, it indicates that it is in left view of the person.
+            memo.put(currLevel, root.data);     //if it is in left view, there is no need to add it to the HashMap as it has been encountered earlier also.
             answer.add(root.data);              //adding the element to the answer list.
         }
         
