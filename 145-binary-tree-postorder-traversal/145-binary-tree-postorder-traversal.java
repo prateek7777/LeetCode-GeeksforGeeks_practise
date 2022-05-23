@@ -15,21 +15,26 @@
  */
 class Solution {
     public List<Integer> postorderTraversal(TreeNode root) {
-        List<Integer> traverse = new ArrayList<>();
-        postorderTraverse(root, traverse);
-        return traverse;
-    }
-    //this is the exact opposite of the preorder traversal of the Binary Tree.
-    public void postorderTraverse(TreeNode root, List<Integer> traverse){
+        List<Integer> answer = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
         
-        if(root == null)
-            return;
+        if(root == null)                                             //because null.val cannot be computed in line 28.
+            return answer;
         
-        postorderTraverse(root.left, traverse);
-        postorderTraverse(root.right, traverse);
-        traverse.add(root.val);
+        stack.push(root);                              //starting with pushing the root.
         
-        return;
-
+        while(!stack.isEmpty()){
+         TreeNode currNode = stack.pop();           //as per the explanation, we put topmost element in stack in the answer list.
+            answer.add(currNode.val);               //adding the value in the answer list.
+            
+            if(currNode.left != null)              //as per postorder, required ouput order: LC, RC, Node.
+                stack.push(currNode.left);           
+            
+            if(currNode.right != null)
+                stack.push(currNode.right);          
+        }
+        //after the while loop, the order in the answer list would be Node, RC, LC.
+        Collections.reverse(answer);               //thus, we reverse the list for getting the requried output. 
+        return answer;    
     }
 }
