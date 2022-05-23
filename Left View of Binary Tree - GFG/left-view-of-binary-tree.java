@@ -126,22 +126,22 @@ class Tree
     {
       ArrayList<Integer> answer = new ArrayList<>();
       HashMap<Integer, Integer> memo = new HashMap<>();
-      leftSideView(root, 0, memo, answer);
+      leftSideView(root, 0, memo, answer);                        //we start at level 0.
       return answer;
     }
     
     public void leftSideView(Node root, int currLevel, HashMap<Integer, Integer> memo, ArrayList<Integer> answer){
         
-        if(root == null)
+        if(root == null)                         //base case.
         return;
         
-        if(!memo.containsKey(currLevel)){
-            memo.put(currLevel, root.data);
-            answer.add(root.data);
+        if(!memo.containsKey(currLevel)){       //if a level has been encountered earlier, it indicates that it is in front view of the person.
+            memo.put(currLevel, root.data);     //if it is in front view, there is no need to add it to the HashMap as it has been encountered earlier also.
+            answer.add(root.data);              //adding the element to the answer list.
         }
         
-        leftSideView(root.left, currLevel+1, memo, answer);
-        leftSideView(root.right, currLevel+1, memo, answer);
+        leftSideView(root.left, currLevel+1, memo, answer);       //recursively going through the left subtree.
+        leftSideView(root.right, currLevel+1, memo, answer);      //recursively going through the right subtree.
         
         return;
     }
