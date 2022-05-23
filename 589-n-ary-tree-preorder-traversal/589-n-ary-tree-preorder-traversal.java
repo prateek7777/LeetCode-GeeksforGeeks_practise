@@ -19,23 +19,24 @@ class Node {
 
 class Solution {
     public List<Integer> preorder(Node root) {
-        List<Integer> traverse = new ArrayList<>();               //the list which contains the traversed tree.
-        preorderTraversal(root, traverse);                        //the recursive function call.
-        return traverse;                                          //returning the final answer.
-    }
-    
-    public void preorderTraversal(Node root, List<Integer> traverse){
+        List<Integer> answer = new ArrayList<>();
+        Stack<Node> stack = new Stack<>();
         
-        if(root == null)                                          //the base case.
-            return;
-//preoder traversal in Binary Tree => value, left child, right child; preorder traversal in N-ary Tree => value, left to right traversal direction of nodes.
-        traverse.add(root.val);                                   //adding the value to the list.
+        if(root == null)                                             //because null.val cannot be computed in line 28.
+            return answer;
         
-        List<Node> childrens = root.children;                     //the given list.
-        for(Node currChild : childrens)           //traversing through the list. the traversal list direction is from left to right.
-            preorderTraversal(currChild, traverse);            //updating the list traverse with each recursive call.
+        stack.push(root);                              //starting with pushing the root.
         
-        return; 
-        
+        while(!stack.isEmpty()){
+            Node currNode = stack.pop();           //as per the explanation, we put topmost element in stack in the answer list.
+            answer.add(currNode.val);               //adding the value in the answer list.
+            
+           List<Node> childrens = currNode.children;
+           for(int i = childrens.size()-1; i>=0; i--){  //iterating through the list from right to left(opp. of left to right(preoder traversal)(because of stack)).
+             Node currChild = childrens.get(i);
+             stack.push(currChild);
+           }
+        }
+    return answer;        
     }
 }
