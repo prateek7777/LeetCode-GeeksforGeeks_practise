@@ -19,22 +19,25 @@ class Node {
 
 class Solution {
     public List<Integer> postorder(Node root) {
-        List<Integer> traverse = new ArrayList<>();
-        postorderTraverse(root, traverse);
-        return traverse;
-    }
-    //this is the exact opposite of preorder traversal of N-ary Tree(589).
-    public void postorderTraverse(Node root, List<Integer> traverse){
+         List<Integer> answer = new ArrayList<>();
+        Stack<Node> stack = new Stack<>();
         
-        if(root == null)
-            return;
+        if(root == null)                                             //because null.val cannot be computed in line 32.
+            return answer;
         
-        List<Node> childrens = root.children;
-        for(Node currChild : childrens)
-            postorderTraverse(currChild, traverse);
+        stack.push(root);                              //starting with pushing the root.
         
-        traverse.add(root.val);
-        
-        return;
+        while(!stack.isEmpty()){
+            Node currNode = stack.pop();           //as per the explanation, we put topmost element in stack in the answer list.
+            answer.add(currNode.val);               //adding the value in the answer list.
+            
+           List<Node> childrens = currNode.children;
+           for(int i = 0; i<childrens.size(); i++){      //iterating through the list from left to right.
+             Node currChild = childrens.get(i);      //preorder traversal: Node, left to right. postorder traversal: left to right, Node.
+             stack.push(currChild);
+           }
+        }
+    Collections.reverse(answer);                //order in the answer list: Node, lr, lr, lr; after reversing, order in the list: left to right, Node.(as per the requirement.)
+    return answer;   
     }
 }
