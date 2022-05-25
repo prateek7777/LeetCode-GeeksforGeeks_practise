@@ -15,19 +15,28 @@
  */
 class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> traverse = new ArrayList<>();
-        inorderTraverse(root, traverse);
-        return traverse;
-    }
-    public void inorderTraverse(TreeNode root, List<Integer> traverse){
-    //preorder = Node, LC, RC; postorder = LC, RC, Node; inorder = LC, Node, RC.(Binary Tree).    
-        if(root == null)
-            return;
         
-        inorderTraverse(root.left, traverse);
-        traverse.add(root.val);
-        inorderTraverse(root.right, traverse);
-    
-        return;
+        Stack<TreeNode> stack = new Stack<>();
+        List<Integer> output = new ArrayList<>();
+        
+        if(root == null)
+            return output;
+        
+        TreeNode curr = root;
+        
+        while(!(curr == null) || !stack.isEmpty()){
+            
+            while(!(curr == null)){
+                stack.push(curr);
+                curr = curr.left;
+            }
+            
+            curr = stack.pop();
+            output.add(curr.val);
+            curr = curr.right;
+        }
+        
+        return output;
+        
     }
 }
