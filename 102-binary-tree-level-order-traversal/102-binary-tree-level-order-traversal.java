@@ -18,32 +18,32 @@ class Solution {
         List<List<Integer>> answer = new ArrayList<>();
         Queue<TreeNode> q = new LinkedList<>();
         
-        if(root == null)
+        if(root == null)                     //corner case of null.
             return answer;
         
-        q.add(root);
-        
+        q.add(root);                         //add something.
+        //start BFS.
         while(!q.isEmpty()){
             List<Integer> currLevelNodes = new ArrayList<Integer>();
             
-            int currSize = q.size();
+            int currSize = q.size();            //the size of the queue q represents the number of nodes at that particular level.
             
-            while(currSize > 0){
+            while(currSize > 0){  //currSize represents the number of nodes at a particular level in the tree.
+               //do all three operations: remove, do something, add children in this loop itself.
+                TreeNode currNode = q.remove();          //remove.
                 
-                TreeNode currNode = q.remove();
+                currLevelNodes.add(currNode.val);        //do something.
                 
-                if(currNode.left != null)
+                if(currNode.left != null)                //add children.
                     q.add(currNode.left);
                 
                 if(currNode.right != null)
                     q.add(currNode.right);
                     
-                currLevelNodes.add(currNode.val);
-                
-                currSize = currSize - 1;      
-            }
-                answer.add(currLevelNodes);    
+                currSize = currSize - 1;                  //decrementing currSize with each iteration.
+            }           
+                answer.add(currLevelNodes);               //coming out of the while loop represents(currSize=0) that all the nodes at a particular level have been added in the list currLevelNodes.    
         }
-       return answer;
+       return answer;                                     //when the queue q is empty, we return the final answer.
     }
 }
