@@ -132,26 +132,26 @@ class Solution
         ArrayList<Integer> output = new ArrayList<>();
         Queue<Node> q = new LinkedList<>();
         
-        if(node == null)
-            return output;
+        // if(node == null)
+        //     return output;
             
-        q.add(node);
-        
-        while(!q.isEmpty()){
+        q.add(node);     //add something in the queue.
+        //start BFS.    
+        while(!q.isEmpty()){     //until queue is not empty.
             
-            Node currNode = q.remove();
+            Node currNode = q.remove();   //remove an element.
             
-            output.add(currNode.data);
+            output.add(currNode.data);    //do something, here, adding data to output list.
             
-            if(currNode.left != null)
+            if(currNode.left != null)     //add children of the Node to the queue in the form of Node, not int, that was just removed from the queue.
             q.add(currNode.left);
             
             if(currNode.right != null)
             q.add(currNode.right);
             
         }
-        
-        return output;
+        //end of BFS.
+        return output;                   //returning the final answer.
     }
 }
 
