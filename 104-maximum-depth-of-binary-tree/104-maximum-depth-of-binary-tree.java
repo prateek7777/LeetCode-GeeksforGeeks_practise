@@ -15,13 +15,35 @@
  */
 class Solution {
     public int maxDepth(TreeNode root) {
-     
-        if(root == null)                    //if the root is null, the height/depth of the tree is 0.
+        Queue<TreeNode> q = new LinkedList<>();
+        int height = 0;
+        
+        if(root == null)
             return 0;
         
-        int leftDepth = 1 + maxDepth(root.left);     // (1+) becasue by going l node below(left or right), we have to add 1 to the depth/height. 
-        int rightDepth = 1 + maxDepth(root.right);   //root.left or root.right is as same as node.next(as in, SIMILAR).
+        q.add(root);
         
-        return Math.max(leftDepth, rightDepth);  //we return the maximum, because, either left or right traverse the entire depth/height of the tree.
-    }
+        while(! q.isEmpty()){
+            
+            int currLevelSize = q.size();
+            
+            while(currLevelSize > 0){
+                
+                TreeNode currNode = q.remove();
+                
+                if(currNode.left != null)
+                    q.add(currNode.left);
+                
+                if(currNode.right != null)
+                    q.add(currNode.right);
+                
+                currLevelSize = currLevelSize - 1;
+    
+            }
+            
+            height = height + 1;
+            
+        }
+        return height;
+        }
 }
