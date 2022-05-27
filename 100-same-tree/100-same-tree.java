@@ -13,21 +13,41 @@
  *     }
  * }
  */
-class Solution {
-    public boolean isSameTree(TreeNode p, TreeNode q) {
-        
-        if(p == null && q == null)       //we reached the end of the two trees without encountering any differences.
-        return true;                     //thus, we return true.
-        
-        if(p == null || q == null)        //even if one of the nodes is null, it indicates that the two are not equal. 
-        return false;                     //thus, we return false.
-        
-        if(p.val != q.val)                //if the values of p and q are not equal, it indicates that the trees are not same.
-            return false;                 //also, null.val cannot be checked here, hence it is checked in line 22 itself.
-                                        
-        boolean leftSideOfTrees = isSameTree(p.left, q.left);           //recursive call on the left side of the 2 trees.
-        boolean rightSideOfTrees = isSameTree(p.right, q.right);        //recursive call on the right side of the 2 trees.
-        
-        return leftSideOfTrees && rightSideOfTrees;      //returns true if equal or else, false is returned.
+class Pair{            //creating a class.
+    TreeNode p;
+    TreeNode q;
+    
+    Pair(TreeNode p, TreeNode q){           //creating a constructor.
+        this.p = p;                         //creating the objects.
+        this.q = q;
     }
 }
+class Solution {
+    public boolean isSameTree(TreeNode t1, TreeNode t2) {
+        Queue<Pair> queue = new LinkedList<>();                  //don't use 'q' as the Queue name, it throws an error ahead, that q has already been declared.
+        
+        queue.add(new Pair(t1, t2));         //add something
+        //start BFS.
+        while(!queue.isEmpty()){
+            
+        Pair currPair = queue.remove();        //remove something.
+        
+        TreeNode  p = currPair.p;
+        TreeNode  q = currPair.q;
+            
+        if(p == null && q == null)              //do something.
+            continue;
+            
+        if(p == null || q == null || p.val != q.val)
+            return false;
+            
+        if(p.left != null || q.left != null)             //process children.
+            queue.add(new Pair(p.left, q.left));
+            
+        if(p.right != null || q.right != null)
+            queue.add(new Pair(p.right, q.right));
+    }
+        return true;                  
+    }    //lot of edge cases are there!!
+}
+        
