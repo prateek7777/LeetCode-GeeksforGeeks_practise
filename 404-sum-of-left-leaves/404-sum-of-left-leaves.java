@@ -13,28 +13,36 @@
  *     }
  * }
  */
+class Pair{                               //creating the class.
+    TreeNode node;
+    boolean left;
+    Pair(TreeNode node, boolean left){    //creating the constructor.
+    this.node = node;                     //creating the objects.
+    this.left = left;
+    }  
+}
 class Solution {
-    int sum = 0;                                          //global declaration.
     public int sumOfLeftLeaves(TreeNode root) {
-        sumLeftLeaves(root, false); //recursive function call. we start with false, because, the required output for tree with only one node(the 1 root) is sum = 0.
-        return sum;
-    }
-    
-    public void sumLeftLeaves(TreeNode root, Boolean isLeftLeaf){
-        
-        if(root == null)                                               //base case.
-            return;
-        
-        if(root.left == null && root.right == null){               //if reached the leaf node.
+        Queue<Pair> queue = new LinkedList<>();           
+        int total = 0;
+        queue.add(new Pair(root, false));               //add something.
+        //start BFS.
+        while(!queue.isEmpty()){
             
-            if(isLeftLeaf == true)                       //if the leaf is on left side.
-                sum = sum + root.val;                    //keep updating the sum with the value present at the root(left leaf node).
+        Pair currPair = queue.remove();                  //remove.
+        TreeNode currNode = currPair.node;
+        boolean isLeft = currPair.left;
             
+        if(currNode.left == null && currNode.right == null && isLeft == true)           //do something = main logic for this problem.
+            total = total + currNode.val;
+            
+        if(currNode.left != null)                                    //process the children.
+            queue.add(new Pair(currNode.left, true));                //passing true to the left children only.
+            
+        if(currNode.right != null)
+            queue.add(new Pair(currNode.right, false));
+ 
         }
-        
-        sumLeftLeaves(root.left, true);                     //for left child, pass true to isLeftLeaf.
-        sumLeftLeaves(root.right, false);                   //for right child, pass false to isLeftLeaf.
-      
-        return;                                           //return type is void.
-    } 
+        return total;                                    //return the final answer.
+    }
 }
