@@ -13,7 +13,7 @@ public class Solution {
     public ListNode detectCycle(ListNode head) {
         ListNode slow = head;
         ListNode fast = head;
-        
+        //a simple dry run will suffice.
         while(fast != null && fast.next != null){
             
             slow = slow.next;
