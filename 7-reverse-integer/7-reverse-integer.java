@@ -2,7 +2,7 @@ class Solution {
     public int reverse(int x) {
         long reverse = 0;
         
-        while(x != 0){
+        while(x != 0){                        // while(x > 0) works only for positive inputs.
             reverse = reverse*10 + x%10;
             x = x/10;
         }
