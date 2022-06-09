@@ -15,7 +15,7 @@
  */
 class Solution {
     public int diameterOfBinaryTree(TreeNode root) {
-        int[] diameter = new int[1];
+        int[] diameter = new int[1];                         //pass by reference.
         height(root, diameter);
         return diameter[0];
     }
@@ -26,8 +26,8 @@ class Solution {
         
         int lh = height(node.left, arr);
         int rh = height(node.right, arr);
-        arr[0] = Math.max(arr[0], lh+rh);
+        arr[0] = Math.max(arr[0], lh+rh);              //the diameter.
         
-        return 1+Math.max(lh, rh);
+        return 1+Math.max(lh, rh);                     //height at each node of the binary tree.
     }
 }
