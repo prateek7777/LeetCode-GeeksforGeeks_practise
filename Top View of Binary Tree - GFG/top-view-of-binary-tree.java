@@ -139,28 +139,28 @@ class Solution
         Queue<Pair> q = new LinkedList<>();
         ArrayList<Integer> answer = new ArrayList<>();
         HashMap<Integer, Integer> memo = new HashMap<>();
-        int minHdis = Integer.MAX_VALUE;
-        int maxHdis = Integer.MIN_VALUE;
+        int minHdis = Integer.MAX_VALUE;                        //opp.
+        int maxHdis = Integer.MIN_VALUE;                        //opp.
         
-        q.add(new Pair(root, 0));
-        
+        q.add(new Pair(root, 0));                                //add something.
+        //start BFS.
         while(!q.isEmpty()){
             
             int size = q.size();
             
             for(int i=0; i<size; i++){
                 
-                Pair currPair = q.remove();
+                Pair currPair = q.remove();                     //remove something.
                 Node currNode = currPair.treeNode;
                 int hdis = currPair.hdis;
 
-                if(!memo.containsKey(hdis)){
+                if(!memo.containsKey(hdis)){                    //do something.
                     memo.put(hdis, currNode.data);
-                    minHdis = Math.min(minHdis, hdis);
-                    maxHdis = Math.max(maxHdis, hdis);
+                    minHdis = Math.min(minHdis, hdis);          //opp. reqd.
+                    maxHdis = Math.max(maxHdis, hdis);          //opp. reqd.
                 }
             
-            if(currNode.left != null)
+            if(currNode.left != null)                          //process children.
                 q.add(new Pair(currNode.left, hdis-1));
             
             if(currNode.right != null)
