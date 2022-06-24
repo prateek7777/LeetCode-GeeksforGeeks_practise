@@ -15,31 +15,31 @@
  */
 class Solution {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        List<List<Integer>> answer = new LinkedList<>();
+        List<List<Integer>> answer = new ArrayList<>();
         generateZigZag(root, answer);
         return answer;
     }
     
     public List<List<Integer>> generateZigZag(TreeNode root, List<List<Integer>> answer){
         
-        if(root == null)
+        if(root == null)           //edge case.
             return null;
         
         Queue<TreeNode> que = new LinkedList<>();
-        boolean leftToRight = false;
-        que.add(root);
+        boolean leftToRight = false; //start with false for this particular problem.  //should be outside the while loop, else it will influence the output.
+        que.add(root);                  //add something.
+        //start BFS.
         while(!que.isEmpty()){
             
             int currLevelSize = que.size();
-            // int[] row = new int[currLevelSize];
             List<Integer> sub = new ArrayList<>();
-            for(int i=0; i<currLevelSize; i++){
+            for(int i=0; i<currLevelSize; i++){        //level order traversal.
                 
-                TreeNode currNode = que.remove();
+                TreeNode currNode = que.remove();       //remove something.
                 
-                sub.add(currNode.val);
+                sub.add(currNode.val);                  //do something.
                 
-                if(currNode.left != null)
+                if(currNode.left != null)               //process children.
                     que.add(currNode.left);
                 
                 if(currNode.right != null)
@@ -47,9 +47,9 @@ class Solution {
                 
             }
                 if(leftToRight == true)
-                Collections.reverse(sub);
-                leftToRight = !leftToRight;
-                answer.add(sub);
+                Collections.reverse(sub);               //as per the question.
+                leftToRight = !leftToRight;             //toggle the boolean variable alternatively for each level.
+                answer.add(sub);                        //add the sub-list to the final-list.
             
         }
     return answer;
