@@ -15,7 +15,7 @@
  */
 class Solution {
     public void flatten(TreeNode root) {
-        if(root == null)
+        if(root == null)                        //edge case.
             return;
         
         Stack<TreeNode> stack = new Stack<>();
@@ -24,20 +24,20 @@ class Solution {
         
         while(!stack.isEmpty()){
             
-            TreeNode curr = stack.peek();
+            TreeNode curr = stack.peek();       //starting with curr = root.
             
             stack.pop();
-            
+            //right left root.
             if(curr.right != null)
-                stack.push(curr.right);
+                stack.push(curr.right);         //right   
             
             if(curr.left != null)
-                stack.push(curr.left);
+                stack.push(curr.left);          //left
             
             if(!stack.isEmpty())
-                curr.right = stack.peek();
+                curr.right = stack.peek();      //right->left, because LIFO. here, the last in was left, hence we are pointing the right to the top of the stack.
             
-            curr.left = null;
+            curr.left = null;                   //the left will be always be null after the tree is converted to linkedlist.
             
         }
     }
