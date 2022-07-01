@@ -13,29 +13,38 @@
  *     }
  * }
  */
-
 class Solution {
-  int max = 0;
+
     public int maxSumBST(TreeNode root) {
-        post(root);
-        return max;
+     int[] maxSum = {0};
+     maxSumBSTHelper(root, maxSum);
+     return maxSum[0];
     }
-    public int[] post(TreeNode root) {
-
-        if (root == null) return new int[]{Integer.MAX_VALUE, Integer.MIN_VALUE, 0};
-        int[] leftSubTree = post(root.left);
-        int[] rightSubTree = post(root.right);
-        if (root.val > leftSubTree[1] && root.val < rightSubTree[0]) {
-            int[] res = new int[3];
-            res[0] = Math.min(leftSubTree[0], root.val);
-            res[1] = Math.max(rightSubTree[1], root.val);
-            res[2] = root.val + leftSubTree[2] + rightSubTree[2];
-            max = Math.max(max, res[2]);
-            return res;
-            
-        }
-
-        return new int[]{Integer.MIN_VALUE, Integer.MAX_VALUE, 0};
+    
+    private int[] maxSumBSTHelper(TreeNode root, int[] maxSum){
         
+        if(root == null)
+            return new int[]{Integer.MAX_VALUE, Integer.MIN_VALUE, 0};    //(min, max, size)
+        
+        int[] leftSubTree = maxSumBSTHelper(root.left, maxSum);
+        int[] rightSubTree = maxSumBSTHelper(root.right, maxSum);  
+        
+        if(!(
+                leftSubTree != null &&
+                rightSubTree != null &&
+                root.val > leftSubTree[1] &&
+                root.val < rightSubTree[0]
+            ))
+            return null;
+        
+         int sum = leftSubTree[2] + rightSubTree[2] + root.val;
+         maxSum[0] = Math.max(sum, maxSum[0]);
+        
+         int min = Math.min(root.val, leftSubTree[0]);
+         int max = Math.max(root.val, rightSubTree[1]);
+        
+         return new int[]{min, max, sum};
+            
     }
+
 }
