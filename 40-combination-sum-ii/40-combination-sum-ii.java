@@ -14,13 +14,13 @@ class Solution {
         }
             
          for(int i = ind; i < candidates.length; i++){   //ind is the point new combination starts. we iterate until the end of the candidates array.
-         
-             
-             if(i == ind || candidates[i] != candidates[i-1]){
+
+             if(i == ind || candidates[i] != candidates[i-1]){   //proceed only if (i==ind will make sure that the element has been encountered for the first time)
+                                                                 //and (candidates[i] != candidates[i-1]) makes sure that duplicate elements are not added into subAnswer.
                 if(candidates[i] > target)  //go for the next function call, because, candidates is sorted as well.
                 break;
              
-             subAnswer.add(candidates[i]);       //adding in the subAnswer.
+             subAnswer.add(candidates[i]);       //adding elements in the subAnswer.
              combinationSum2Helper(i+1, candidates, target-candidates[i], answer, subAnswer);  //we can put one element only once, hence, i+1.
              subAnswer.remove(subAnswer.size()-1);  //to avoid repetive elements in the subAnswer list. to avoid an output like : [[1,1,1],[1,1,1,2]].
              //as a rule of thummb, while going back(reverse order) in the function call, remove the elements according to the current situation in the function call.
