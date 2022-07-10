@@ -7,7 +7,7 @@ class Solution {
     
     public void createPermutations(int[] nums, List<List<Integer>> answer, List<Integer> tempList){
      
-        if(tempList.size() == nums.length){        //base case.
+        if(tempList.size() == nums.length){        //base case. (it runs multiple times for every end of the recursive call).
             answer.add(new ArrayList<>(tempList)); //adding the sub answer to the final answer with the new keyword to avoid empty list outputs. the "new" keyword leads to allocation of new memory.
         }
         else
