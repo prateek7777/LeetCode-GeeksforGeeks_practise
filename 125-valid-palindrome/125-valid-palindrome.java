@@ -12,13 +12,13 @@ class Solution {
         int aPointer = 0;      //left pointer.
         int bPointer = fixedString.length()-1;   //right pointer.
         
-        while(aPointer < bPointer){   //un
-            if(fixedString.charAt(aPointer) != fixedString.charAt(bPointer))
+        while(aPointer <= bPointer){   //until the left and the right pointer meet in the middle of fixedString.
+            if(fixedString.charAt(aPointer) != fixedString.charAt(bPointer))  //not a palindrome. 
                 return false;
             
-            aPointer++;
-            bPointer--;
+            aPointer++;   //going inwards.
+            bPointer--;   //going inwards.
         }
-        return true;
+        return true;     //a palindrome.
     }
 }
