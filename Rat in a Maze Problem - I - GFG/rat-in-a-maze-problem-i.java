@@ -36,30 +36,30 @@ class Solution {
     public static ArrayList<String> findPath(int[][] grid, int n) {
         // Your code here
         ArrayList<String> allPaths = new ArrayList<>();
-        findAllPaths(grid, 0, 0, n, "", allPaths);
+        findAllPaths(grid, 0, 0, n, "", allPaths);       //recursive call.
         return allPaths;
     }
-    
+    //square matrix of order n*n.
     public static void findAllPaths(int[][] grid, int currRow, int currCol, int n, String currPath, ArrayList<String> allPaths){
-        
+        //as per question, grid[][] = 0 is invalid. grid[][] = -1 implies that it has been already visited. other conditions are for index bounds.
         if(currRow < 0 || currRow >= n || currCol < 0 || currCol >=n || grid[currRow][currCol] == 0 || grid[currRow][currCol] == -1){
             return;
         }
         
-        if(currRow == n-1 && currCol == n-1)
+        if(currRow == n-1 && currCol == n-1)      //the last element of the matrix grid.(required point to be reached.)
         {
-            allPaths.add(currPath);
+            allPaths.add(currPath); //adding the path to the list allPaths. //for every recursive call, a new currPath will be added.
             return;
         }
         
-        grid[currRow][currCol] = -1;
+        grid[currRow][currCol] = -1;   //indicating that this element has been reached/the rat has already went over.         //choose.
+        //the current path is in lexicographical order.
+        findAllPaths(grid, currRow+1, currCol, n, currPath + "D", allPaths);    //down.                                       //explore.
+        findAllPaths(grid, currRow, currCol-1, n, currPath + "L", allPaths);    //left.
+        findAllPaths(grid, currRow, currCol+1, n, currPath + "R", allPaths);    //right.
+        findAllPaths(grid, currRow-1, currCol, n, currPath + "U", allPaths);    //up.
         
-        findAllPaths(grid, currRow+1, currCol, n, currPath + "D", allPaths);
-        findAllPaths(grid, currRow, currCol-1, n, currPath + "L", allPaths);
-        findAllPaths(grid, currRow, currCol+1, n, currPath + "R", allPaths);
-        findAllPaths(grid, currRow-1, currCol, n, currPath + "U", allPaths);
-        
-        grid[currRow][currCol] = 1;
+        grid[currRow][currCol] = 1;     //backtrack, that is undo the change.                                                   //unchoose.
    
     }
     
