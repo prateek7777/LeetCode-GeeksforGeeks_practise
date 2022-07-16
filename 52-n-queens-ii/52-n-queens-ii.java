@@ -2,7 +2,12 @@ class Solution {
     public int totalNQueens(int n) {
         //there are two approaches.
         //second approach is where we don't store the answer list.
-    List<List<String>> answer = new ArrayList<>();
+        
+    
+        
+    //second approach:
+    // List<List<String>> answer = new ArrayList<>();
+        int[] count = {0};       //array is pass by reference.
         char[][] board = new char[n][n];                //create a board of chars.
         
         for(int i = 0; i<n; i++){
@@ -11,13 +16,13 @@ class Solution {
             }
         }
         
-        nQueens(board, 0, n, answer);     //the main recursive function call.
-        return answer.size();
+        nQueens(board, 0, n, count);     //the main recursive function call.
+        return count[0];
     }
     
-    public void nQueens(char[][] board, int currRow, int n, List<List<String>> answer){
+    public void nQueens(char[][] board, int currRow, int n, int[] count){
         if(currRow == n){             //the lower end of the board has been reached without any backtrack.(nxn chessboard).
-            answer.add(convertAns(board, n));   //the currentAnswer(subAnswer of one string list) is added to the answer list.
+           count[0]=count[0]+1; //incrementing the final count.
             return;
         }
         
@@ -25,7 +30,7 @@ class Solution {
         
             if(isInputValid(board, currRow, currCol, n)){    //if the cell is valid for the queen to be put.
                 board[currRow][currCol] = 'Q';             //populate the cell with 'Q'.                    //choose.
-                nQueens(board, currRow+1, n, answer);      //go for the next row as two queens cannot be present in the same row.    //explore.
+                nQueens(board, currRow+1, n, count);      //go for the next row as two queens cannot be present in the same row.    //explore.
                 board[currRow][currCol] = '.';             //backtrack.     //unchoose. //while returning we convert the cell into its previous state.
             }
             
@@ -34,19 +39,19 @@ class Solution {
         return;
     }
     
-    public List<String> convertAns(char[][] board, int n){
-        List<String> currAnswer = new ArrayList<>();
-        //converting the answer from board[][] = [][] to currAnswer = [currRowString, currRowString].
-        for(int i=0; i<n; i++){
-            String currRowString = "";    //for every new row, the string is re-initialized.
-            for(int j=0; j<n; j++){       
-                currRowString = currRowString + board[i][j];  //the column cells are put in currRowString as per their data.(left to right).
-            }
+//     public List<String> convertAns(char[][] board, int n){
+//         List<String> currAnswer = new ArrayList<>();
+//         //converting the answer from board[][] = [][] to currAnswer = [currRowString, currRowString].
+//         for(int i=0; i<n; i++){
+//             String currRowString = "";    //for every new row, the string is re-initialized.
+//             for(int j=0; j<n; j++){       
+//                 currRowString = currRowString + board[i][j];  //the column cells are put in currRowString as per their data.(left to right).
+//             }
                      
-        currAnswer.add(currRowString);    //adding the currRowString to list currAnswer. this will repeat for all rows(i).
-        }
-        return currAnswer;
-    }
+//         currAnswer.add(currRowString);    //adding the currRowString to list currAnswer. this will repeat for all rows(i).
+//         }
+//         return currAnswer;
+//     }
     
     public boolean isInputValid(char[][] board, int currRow, int currCol, int n){
         //for the input to be valid, any movement in row, column and the diagonal should be valid.
