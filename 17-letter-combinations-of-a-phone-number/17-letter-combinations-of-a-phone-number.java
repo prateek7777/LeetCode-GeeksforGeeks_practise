@@ -10,14 +10,14 @@ class Solution {
                                                  "tuv", "wxyz"};
         
         out_arr.add("");
-        
+        //Nick White
         for(int i = 0; i<digits.length(); i++){
             int index = Character.getNumericValue(digits.charAt(i));
             while(out_arr.peek().length() == i){
                 String permutation = out_arr.remove();
                 for(char c : combination_map[index].toCharArray()){
                     out_arr.add(permutation+c);
-                    }
+                    }   
             }
         
         }
